@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Supriya Ladies Beauty Parlour offers luxury salon services, bridal beauty, skincare, and premium cosmetics in a refined, modern experience."
+    />
+    <meta name="theme-color" content="#130d13" />
+    <title>Supriya Ladies Beauty Parlour</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-theme="dark">
+    <div class="loading-screen" id="loading-screen">
+      <div class="loading-logo">
+        <span>S</span>
+        <div class="loading-ring"></div>
+      </div>
+      <p>Creating a luxurious experience</p>
+    </div>
+
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <div class="cursor" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#home">
+        <span class="brand-mark">SL</span>
+        <span>Supriya Ladies Beauty Parlour</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#cosmetics">Cosmetics</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-cta" href="#booking">Book Appointment</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero section">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Luxury Beauty • Salon • Cosmetics</p>
+          <h1>Supriya Ladies Beauty Parlour</h1>
+          <p class="hero-text">
+            Professional beauty, hair care, skincare and cosmetics curated for a timeless, radiant glow.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#booking">Book Appointment</a>
+            <a class="btn btn-secondary" href="#services">Explore Services</a>
+          </div>
+          <div class="hero-highlights">
+            <div>
+              <strong>12+</strong>
+              <span>Years of excellence</span>
+            </div>
+            <div>
+              <strong>4.9</strong>
+              <span>Client rating</span>
+            </div>
+            <div>
+              <strong>100%</strong>
+              <span>Premium care</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual reveal">
+          <canvas id="hero-canvas"></canvas>
+          <div class="floating-card floating-card-a">
+            <i class="fa-solid fa-gem"></i>
+            <span>Luxury Glow</span>
+          </div>
+          <div class="floating-card floating-card-b">
+            <i class="fa-solid fa-sparkles"></i>
+            <span>Signature Finish</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section about-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">About Us</p>
+          <h2>Where elegance meets expert beauty</h2>
+          <p>
+            Supriya Ladies Beauty Parlour is a trusted destination for premium salon services and high-quality cosmetic essentials. We combine artistry, comfort, and luxury to create looks that feel effortlessly radiant.
+          </p>
+        </div>
+        <div class="owner-profile reveal">
+          <img src="image/owner.jpg" alt="Owner Supriya" loading="lazy" width="600" height="800">
+          <div class="owner-info">
+            <p class="owner-name">Supriya — Founder</p>
+            <p class="owner-bio">Founder & head stylist crafting luxury looks with personalized care and attention to detail.</p>
+          </div>
+        </div>
+        <div class="about-grid">
+          <article class="glass-card reveal">
+            <h3>Personalized Luxury</h3>
+            <p>Every appointment is tailored to your personality, occasion, and desired finish.</p>
+          </article>
+          <article class="glass-card reveal">
+            <h3>Premium Products</h3>
+            <p>From bridal glamour to everyday glow, only refined and skin-conscious formulas are used.</p>
+          </article>
+          <article class="glass-card reveal">
+            <h3>Relaxing Atmosphere</h3>
+            <p>Step into a calm, lavish space designed to make beauty rituals feel truly indulgent.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="services" class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Services</p>
+          <h2>Refined services for every occasion</h2>
+        </div>
+        <div class="card-grid services-grid">
+          <article class="service-card reveal">
+            <i class="fa-solid fa-ring"></i>
+            <h3>Bridal Makeup</h3>
+            <p>Flawless finishing touches for the most memorable day.</p>
+          </article>
+          <article class="service-card reveal">
+            <i class="fa-solid fa-champagne-glasses"></i>
+            <h3>Party Makeup</h3>
+            <p>Bold glamour with a soft, polished finish for evening events.</p>
+          </article>
+          <article class="service-card reveal">
+            <i class="fa-solid fa-spa"></i>
+            <h3>Hair Spa</h3>
+            <p>Nourishing therapies for healthy, glossy, resilient hair.</p>
+          </article>
+          <article class="service-card reveal">
+            <i class="fa-solid fa-scissors"></i>
+            <h3>Hair Styling</h3>
+            <p>Elegant cuts, blowouts, and signature looks curated to your mood.</p>
+          </article>
+          <article class="service-card reveal">
+            <i class="fa-solid fa-palette"></i>
+            <h3>Hair Coloring</h3>
+            <p>Rich, luminous tones with dimensional shine.</p>
+          </article>
+          <article class="service-card reveal">
+            <i class="fa-solid fa-face-smile"></i>
+            <h3>Facial</h3>
+            <p>Radiance-boosting facials for hydration, glow, and skin balance.</p>
+          </article>
+          <article class="service-card reveal">
+            <i class="fa-solid fa-bottle-droplet"></i>
+            <h3>Cleanup</h3>
+            <p>Gentle skincare treatments that refresh and restore.</p>
+          </article>
+          <article class="service-card reveal">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <h3>Waxing</h3>
+            <p>Expert hair removal with smooth, comfortable results.</p>
+          </article>
+          <article class="service-card reveal">
+            <i class="fa-solid fa-hand"></i>
+            <h3>Threading</h3>
+            <p>Fine detailing for brows and facial framing.</p>
+          </article>
+          <article class="service-card reveal">
+            <i class="fa-solid fa-hand-sparkles"></i>
+            <h3>Manicure</h3>
+            <p>Polished nails with a chic, refined finish.</p>
+          </article>
+          <article class="service-card reveal">
+            <i class="fa-solid fa-shoe-prints"></i>
+            <h3>Pedicure</h3>
+            <p>Relaxing care for feet that looks and feels beautifully pampered.</p>
+          </article>
+          <article class="service-card reveal">
+            <i class="fa-solid fa-heart"></i>
+            <h3>Skin Care</h3>
+            <p>Customized routines for healthy, luminous skin.</p>
+          </article>
+          <article class="service-card reveal">
+            <i class="fa-solid fa-star"></i>
+            <h3>Mehndi</h3>
+            <p>Traditional artistry with delicate, elegant detailing.</p>
+          </article>
+          <article class="service-card reveal">
+            <i class="fa-solid fa-paintbrush"></i>
+            <h3>Nail Art</h3>
+            <p>Creative, fashion-forward nail designs designed to impress.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="cosmetics" class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Cosmetics</p>
+          <h2>Luxury essentials for everyday glamour</h2>
+        </div>
+        <div class="card-grid product-grid">
+          <article class="product-card reveal">
+            <div class="product-visual lipstick"></div>
+            <h3>Lipsticks</h3>
+            <p>Velvety color with a hydrated, plush finish.</p>
+          </article>
+          <article class="product-card reveal">
+            <div class="product-visual foundation"></div>
+            <h3>Foundations</h3>
+            <p>Lightweight elegance with skin-perfecting coverage.</p>
+          </article>
+          <article class="product-card reveal">
+            <div class="product-visual powder"></div>
+            <h3>Compact Powder</h3>
+            <p>Soft-focus finish that keeps your look fresh all day.</p>
+          </article>
+          <article class="product-card reveal">
+            <div class="product-visual kajal"></div>
+            <h3>Kajal</h3>
+            <p>Deep, rich definition that frames the eyes beautifully.</p>
+          </article>
+          <article class="product-card reveal">
+            <div class="product-visual eyeliner"></div>
+            <h3>Eyeliner</h3>
+            <p>Precise lines for dramatic or delicate expression.</p>
+          </article>
+          <article class="product-card reveal">
+            <div class="product-visual polish"></div>
+            <h3>Nail Polish</h3>
+            <p>High-shine shades for a polished, luxurious finish.</p>
+          </article>
+          <article class="product-card reveal">
+            <div class="product-visual wash"></div>
+            <h3>Face Wash</h3>
+            <p>Gentle cleansing for a fresh, healthy complexion.</p>
+          </article>
+          <article class="product-card reveal">
+            <div class="product-visual moisturizer"></div>
+            <h3>Moisturizer</h3>
+            <p>Nourishing hydration to leave skin supple and luminous.</p>
+          </article>
+          <article class="product-card reveal">
+            <div class="product-visual shampoo"></div>
+            <h3>Shampoo</h3>
+            <p>Caring formulas for smooth, radiant, manageably beautiful hair.</p>
+          </article>
+          <article class="product-card reveal">
+            <div class="product-visual conditioner"></div>
+            <h3>Conditioner</h3>
+            <p>Silky softness and luminous shine with every rinse.</p>
+          </article>
+          <article class="product-card reveal">
+            <div class="product-visual serum"></div>
+            <h3>Hair Serum</h3>
+            <p>Frizz control and polished shine with a featherlight feel.</p>
+          </article>
+          <article class="product-card reveal">
+            <div class="product-visual perfume"></div>
+            <h3>Perfume</h3>
+            <p>Signature scents designed to linger in the most graceful way.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="gallery" class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Gallery</p>
+          <h2>Moments of glamour, detail, and artistry</h2>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-card reveal tall"><div class="gallery-image image-1"></div></div>
+          <div class="gallery-card reveal"><div class="gallery-image image-2"></div></div>
+          <div class="gallery-card reveal"><div class="gallery-image image-3"></div></div>
+          <div class="gallery-card reveal wide"><div class="gallery-image image-4"></div></div>
+          <div class="gallery-card reveal"><div class="gallery-image image-5"></div></div>
+          <div class="gallery-card reveal"><div class="gallery-image image-6"></div></div>
+        </div>
+      </section>
+
+      <section id="testimonials" class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Testimonials</p>
+          <h2>Trusted by clients who love their glow</h2>
+        </div>
+        <div class="testimonial-track">
+          <article class="testimonial-card reveal">
+            <div class="testimonial-profile">
+              <div class="avatar">A</div>
+              <div>
+                <h3>Aarti</h3>
+                <p>Bridal Makeup</p>
+              </div>
+            </div>
+            <div class="stars">★★★★★</div>
+            <p>“The experience felt luxurious from start to finish. My bridal look was refined, elegant, and unforgettable.”</p>
+          </article>
+          <article class="testimonial-card reveal">
+            <div class="testimonial-profile">
+              <div class="avatar">N</div>
+              <div>
+                <h3>Nisha</h3>
+                <p>Hair Spa + Styling</p>
+              </div>
+            </div>
+            <div class="stars">★★★★★</div>
+            <p>“Every detail was thoughtful and the salon atmosphere was so calming and beautifully designed.”</p>
+          </article>
+          <article class="testimonial-card reveal">
+            <div class="testimonial-profile">
+              <div class="avatar">R</div>
+              <div>
+                <h3>Riya</h3>
+                <p>Facial & Skin Care</p>
+              </div>
+            </div>
+            <div class="stars">★★★★★</div>
+            <p>“My skin felt amazing after the treatment and I loved the premium products and personal care.”</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="booking" class="section booking-section">
+        <div class="booking-card reveal">
+          <div class="booking-copy">
+            <p class="eyebrow">Book an Appointment</p>
+            <h2>Reserve your luxurious beauty experience</h2>
+            <p>From bridal looks to spa care, let us create a bespoke experience that feels effortlessly glamorous.</p>
+          </div>
+          <form class="booking-form" id="booking-form">
+            <div class="form-grid">
+              <label>
+                Name
+                <input type="text" name="name" required />
+              </label>
+              <label>
+                Phone
+                <input type="tel" name="phone" required />
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" required />
+              </label>
+              <label>
+                Service
+                <select name="service" required>
+                  <option value="">Select</option>
+                  <option>Bridal Makeup</option>
+                  <option>Party Makeup</option>
+                  <option>Hair Spa</option>
+                  <option>Hair Styling</option>
+                  <option>Facial</option>
+                  <option>Manicure</option>
+                  <option>Pedicure</option>
+                </select>
+              </label>
+              <label>
+                Preferred Date
+                <input type="date" name="date" required />
+              </label>
+              <label>
+                Preferred Time
+                <input type="time" name="time" required />
+              </label>
+            </div>
+            <label>
+              Message
+              <textarea name="message" rows="4" required></textarea>
+            </label>
+            <button class="btn btn-primary submit-btn" type="submit">Request Appointment</button>
+            <p class="form-message" id="form-message" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact-section">
+        <div class="contact-card reveal">
+          <div class="contact-details">
+            <p class="eyebrow">Contact</p>
+            <h2>Visit or reach us anytime</h2>
+            <ul>
+              <li><i class="fa-solid fa-location-dot"></i> 14, Rosewood Avenue, Downtown</li>
+              <li><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
+              <li><i class="fa-solid fa-envelope"></i> hello@supriyaladiesbeauty.com</li>
+            </ul>
+            <a class="whatsapp-btn" href="https://wa.me/919876543210" target="_blank" rel="noreferrer">
+              <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+            <div class="social-links">
+              <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+            </div>
+          </div>
+          <div class="map-card">
+            <iframe
+              title="Google Map"
+              src="https://www.google.com/maps?q=14,%20Rosewood%20Avenue,%20Downtown&z=14&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <a class="brand brand-footer" href="#home">
+          <span class="brand-mark">SL</span>
+          <span>Supriya Ladies Beauty Parlour</span>
+        </a>
+        <p>Luxury beauty, salon artistry, and cosmetic curation with a timeless touch.</p>
+      </div>
+      <div>
+        <h3>Quick Links</h3>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#testimonials">Testimonials</a>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p>+91 98765 43210</p>
+        <p>hello@supriyaladiesbeauty.com</p>
+      </div>
+      <div>
+        <h3>Hours</h3>
+        <p>Mon–Sat: 10:00 AM – 8:00 PM</p>
+        <p>Sun: Closed</p>
+      </div>
+    </footer>
+
+    <a class="floating-whatsapp" href="https://wa.me/919876543210" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
