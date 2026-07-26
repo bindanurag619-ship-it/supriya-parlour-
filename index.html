@@ -48,10 +48,9 @@
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#cosmetics">Cosmetics</a>
-        <a href="#gallery">Gallery</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#contact">Contact</a>
-        <a class="nav-cta" href="#booking">Book Appointment</a>
+        <a class="nav-cta" href="#contact">Contact Us</a>
       </nav>
     </header>
 
@@ -64,9 +63,9 @@
             Professional beauty, hair care, skincare and cosmetics curated for a timeless, radiant glow.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#booking">Book Appointment</a>
+            <a class="btn btn-primary" href="#contact">Contact Us</a>
             <a class="btn btn-secondary" href="#services">Explore Services</a>
-            <button class="btn btn-secondary" type="button" id="open-dulhan-gallery-btn">Dulhan Photo</button>
+            <button class="btn btn-secondary" type="button" id="open-dulhan-gallery-btn">View Dulhan Photo</button>
           </div>
           <div class="hero-highlights">
             <div>
@@ -99,16 +98,11 @@
       <section id="dulhan-gallery-panel" class="section dulhan-gallery-section" hidden>
         <div class="section-heading reveal">
           <p class="eyebrow">Dulhan Gallery</p>
-          <h2>Upload bridal photos for your gallery</h2>
-          <p>Select one or more images and keep them saved in your browser for quick access.</p>
+          <h2>Featured bridal moments</h2>
+          <p>These bridal photos are displayed here for visitors to view.</p>
         </div>
         <div class="upload-card reveal">
-          <div class="upload-controls">
-            <label class="upload-label" for="dulhan-upload-input">Choose photos</label>
-            <input id="dulhan-upload-input" type="file" accept="image/*" capture="environment" multiple />
-            <button class="btn btn-primary" type="button" id="upload-gallery-btn">Upload Photos</button>
-          </div>
-          <p class="upload-status" id="upload-status">No photos uploaded yet.</p>
+          <p class="upload-status" id="upload-status">No bridal photos have been added yet.</p>
           <div id="dulhan-preview-grid" class="gallery-upload-grid"></div>
         </div>
       </section>
@@ -120,13 +114,6 @@
           <p>
             Supriya Ladies Beauty Parlour is a trusted destination for premium salon services and high-quality cosmetic essentials. We combine artistry, comfort, and luxury to create looks that feel effortlessly radiant.
           </p>
-        </div>
-        <div class="owner-profile reveal">
-          <img src="image/owner.jpg" alt="Owner Supriya" loading="lazy" width="600" height="800">
-          <div class="owner-info">
-            <p class="owner-name">Supriya — Founder</p>
-            <p class="owner-bio">Founder & head stylist crafting luxury looks with personalized care and attention to detail.</p>
-          </div>
         </div>
         <div class="about-grid">
           <article class="glass-card reveal">
@@ -292,20 +279,7 @@
         </div>
       </section>
 
-      <section id="gallery" class="section">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Gallery</p>
-          <h2>Moments of glamour, detail, and artistry</h2>
-        </div>
-        <div class="gallery-grid">
-          <div class="gallery-card reveal tall"><div class="gallery-image image-1"></div></div>
-          <div class="gallery-card reveal"><div class="gallery-image image-2"></div></div>
-          <div class="gallery-card reveal"><div class="gallery-image image-3"></div></div>
-          <div class="gallery-card reveal wide"><div class="gallery-image image-4"></div></div>
-          <div class="gallery-card reveal"><div class="gallery-image image-5"></div></div>
-          <div class="gallery-card reveal"><div class="gallery-image image-6"></div></div>
-        </div>
-      </section>
+      <!-- Main gallery section removed as requested -->
 
       <section id="testimonials" class="section">
         <div class="section-heading reveal">
@@ -349,74 +323,21 @@
         </div>
       </section>
 
-      <section id="booking" class="section booking-section">
-        <div class="booking-card reveal">
-          <div class="booking-copy">
-            <p class="eyebrow">Book an Appointment</p>
-            <h2>Reserve your luxurious beauty experience</h2>
-            <p>From bridal looks to spa care, let us create a bespoke experience that feels effortlessly glamorous.</p>
-          </div>
-          <form class="booking-form" id="booking-form">
-            <div class="form-grid">
-              <label>
-                Name
-                <input type="text" name="name" required />
-              </label>
-              <label>
-                Phone
-                <input type="tel" name="phone" required />
-              </label>
-              <label>
-                Email
-                <input type="email" name="email" required />
-              </label>
-              <label>
-                Service
-                <select name="service" required>
-                  <option value="">Select</option>
-                  <option>Bridal Makeup</option>
-                  <option>Party Makeup</option>
-                  <option>Hair Spa</option>
-                  <option>Hair Styling</option>
-                  <option>Facial</option>
-                  <option>Manicure</option>
-                  <option>Pedicure</option>
-                </select>
-              </label>
-              <label>
-                Preferred Date
-                <input type="date" name="date" required />
-              </label>
-              <label>
-                Preferred Time
-                <input type="time" name="time" required />
-              </label>
-            </div>
-            <label>
-              Message
-              <textarea name="message" rows="4" required></textarea>
-            </label>
-            <button class="btn btn-primary submit-btn" type="submit">Request Appointment</button>
-            <p class="form-message" id="form-message" aria-live="polite"></p>
-          </form>
-        </div>
-      </section>
-
       <section id="contact" class="section contact-section">
         <div class="contact-card reveal">
           <div class="contact-details">
             <p class="eyebrow">Contact</p>
             <h2>Visit or reach us anytime</h2>
             <ul>
-              <li><i class="fa-solid fa-location-dot"></i> 14, Rosewood Avenue, Downtown</li>
-              <li><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
+              <li><i class="fa-solid fa-location-dot"></i> Sadalpur, Varanasi Near Kali Charan Saraswati Inter College</li>
+              <li><i class="fa-solid fa-phone"></i> +91 93358 30067</li>
               <li><i class="fa-solid fa-envelope"></i> hello@supriyaladiesbeauty.com</li>
             </ul>
-            <a class="whatsapp-btn" href="https://wa.me/919876543210" target="_blank" rel="noreferrer">
+            <a class="whatsapp-btn" href="https://wa.me/919335830067" target="_blank" rel="noreferrer">
               <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
             </a>
             <div class="social-links">
-              <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://www.instagram.com/__s__s__.8/?__pwa=1#" target="_blank" rel="noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
               <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
               <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
             </div>
@@ -432,6 +353,14 @@
         </div>
       </section>
     </main>
+
+    <!-- Dulhan lightbox for fullscreen viewing -->
+    <div id="dulhan-lightbox" class="dulhan-lightbox" hidden>
+      <button id="dulhan-close" class="lightbox-close" aria-label="Close">×</button>
+      <button id="dulhan-prev" class="lightbox-nav lightbox-prev" aria-label="Previous">‹</button>
+      <img id="dulhan-lightbox-img" class="lightbox-image" alt="Dulhan full view">
+      <button id="dulhan-next" class="lightbox-nav lightbox-next" aria-label="Next">›</button>
+    </div>
 
     <footer class="site-footer">
       <div>
@@ -449,7 +378,7 @@
       </div>
       <div>
         <h3>Contact</h3>
-        <p>+91 98765 43210</p>
+        <p>+91 3358 30067</p>
         <p>hello@supriyaladiesbeauty.com</p>
       </div>
       <div>
@@ -459,7 +388,7 @@
       </div>
     </footer>
 
-    <a class="floating-whatsapp" href="https://wa.me/919876543210" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+    <a class="floating-whatsapp" href="https://wa.me/919335830067" target="_blank" rel="noreferrer" aria-label="WhatsApp">
       <i class="fa-brands fa-whatsapp"></i>
     </a>
 
