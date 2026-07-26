@@ -8,6 +8,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('booking-form');
   const formMessage = document.getElementById('form-message');
   const revealItems = document.querySelectorAll('.reveal');
+  const openDulhanGalleryBtn = document.getElementById('open-dulhan-gallery-btn');
+  const dulhanGalleryPanel = document.getElementById('dulhan-gallery-panel');
+  const uploadInput = document.getElementById('dulhan-upload-input');
+  const uploadButton = document.getElementById('upload-gallery-btn');
+  const previewGrid = document.getElementById('dulhan-preview-grid');
+  const uploadStatus = document.getElementById('upload-status');
+  const storageKey = 'supriya-dulhan-gallery';
+
+  const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  let galleryImages = [];
+
+  try {
+    const storedImages = localStorage.getItem(storageKey);
+    galleryImages = storedImages ? JSON.parse(storedImages) : [];
+    if (!Array.isArray(galleryImages)) {
+      galleryImages = [];
+    }
+  } catch (error) {
+    console.warn('Gallery storage is unavailable on this device:', error);
+    galleryImages = [];
+  }
 
   document.body.dataset.theme = 'dark';
 
@@ -64,13 +85,103 @@ document.addEventListener('DOMContentLoaded', () => {
     cursor.style.top = `${event.clientY}px`;
   };
 
-  window.addEventListener('mousemove', pointerMove);
-  document.querySelectorAll('a, button, input, select, textarea, .service-card, .product-card, .gallery-card, .testimonial-card').forEach((el) => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+  if (!isTouchDevice && cursor) {
+    window.addEventListener('mousemove', pointerMove);
+    document.querySelectorAll('a, button, input, select, textarea, .service-card, .product-card, .gallery-card, .testimonial-card').forEach((el) => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+    });
+  }
+
+  const updateUploadStatus = (message) => {
+    if (uploadStatus) {
+      uploadStatus.textContent = message;
+    }
+  };
+
+  const renderUploadedImages = () => {
+    if (!previewGrid) return;
+
+    previewGrid.innerHTML = '';
+
+    if (!galleryImages.length) {
+      previewGrid.innerHTML = '<p class="empty-state">No photos uploaded yet. Select images to start your bridal gallery.</p>';
+      return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    galleryImages.forEach((imageData, index) => {
+      const card = document.createElement('article');
+      card.className = 'upload-item';
+      card.innerHTML = `
+        <img src="${imageData}" alt="Uploaded bridal photo ${index + 1}" loading="lazy">
+        <button class="remove-photo-btn" type="button" data-index="${index}" aria-label="Remove photo">×</button>
+      `;
+      fragment.appendChild(card);
+    });
+
+    previewGrid.appendChild(fragment);
+  };
+
+  const saveGalleryImages = () => {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(galleryImages));
+    } catch (error) {
+      console.warn('Unable to save gallery images:', error);
+      updateUploadStatus('Photos were added for this session, but this device could not save them permanently.');
+    }
+    renderUploadedImages();
+  };
+
+  const handleImageUpload = async () => {
+    if (!uploadInput?.files?.length) {
+      updateUploadStatus('Please choose at least one photo first.');
+      return;
+    }
+
+    const files = Array.from(uploadInput.files);
+    const imageResults = await Promise.all(
+      files.map((file) => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      }))
+    );
+
+    galleryImages = [...galleryImages, ...imageResults];
+    saveGalleryImages();
+    uploadInput.value = '';
+    updateUploadStatus(`${imageResults.length} photo${imageResults.length > 1 ? 's' : ''} added to your gallery.`);
+  };
+
+  openDulhanGalleryBtn?.addEventListener('click', () => {
+    if (dulhanGalleryPanel) {
+      dulhanGalleryPanel.hidden = !dulhanGalleryPanel.hidden;
+      if (!dulhanGalleryPanel.hidden) {
+        dulhanGalleryPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
   });
 
-  form.addEventListener('submit', (event) => {
+  uploadButton?.addEventListener('click', handleImageUpload);
+
+  previewGrid?.addEventListener('click', (event) => {
+    const removeButton = event.target.closest('.remove-photo-btn');
+    if (!removeButton) return;
+
+    const index = Number(removeButton.dataset.index);
+    if (Number.isNaN(index)) return;
+
+    galleryImages.splice(index, 1);
+    saveGalleryImages();
+    updateUploadStatus('Photo removed.');
+  });
+
+  renderUploadedImages();
+
+  form?.addEventListener('submit', (event) => {
     event.preventDefault();
     const data = new FormData(form);
     const name = data.get('name')?.toString().trim();
