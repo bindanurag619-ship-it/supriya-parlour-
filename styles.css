@@ -302,6 +302,50 @@ h1,
 h2,
 h3 {
   font-family: 'Playfair Display', serif;
+/* Dulhan lightbox styles */
+.dulhan-lightbox {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,0.85);
+  z-index: 3000;
+}
+.dulhan-lightbox[hidden] { display: none; }
+.lightbox-image {
+  max-width: 95%;
+  max-height: 92%;
+  border-radius: 12px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+}
+.lightbox-close {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 2.2rem;
+  cursor: pointer;
+  z-index: 3100;
+}
+.lightbox-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.06);
+  border: none;
+  color: #fff;
+  font-size: 2.6rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  cursor: pointer;
+  z-index: 3100;
+}
+.lightbox-prev { left: 22px; }
+.lightbox-next { right: 22px; }
+.dulhan-thumb { cursor: zoom-in; display: block; width: 100%; height: 100%; object-fit: cover; }
   line-height: 1.1;
 }
 
@@ -814,7 +858,19 @@ textarea { resize: vertical; }
   z-index: 1600;
 }
 
-.floating-whatsapp { bottom: 5.2rem; background: #25D366; color: white; }
+.floating-whatsapp {
+  bottom: 5.2rem;
+  background: linear-gradient(145deg, #2bd46f, #1f9f55);
+  color: white;
+  box-shadow: 0 12px 24px rgba(37, 211, 102, 0.3), inset 0 1px 0 rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.18);
+  transform: perspective(600px) rotateX(8deg) rotateY(-8deg);
+}
+
+.floating-whatsapp i {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.24);
+}
+
 .back-to-top { bottom: 1.2rem; opacity: 0; visibility: hidden; transition: opacity 0.25s ease, visibility 0.25s ease; }
 .back-to-top.visible { opacity: 1; visibility: visible; }
 
