@@ -66,6 +66,7 @@
           <div class="hero-actions">
             <a class="btn btn-primary" href="#booking">Book Appointment</a>
             <a class="btn btn-secondary" href="#services">Explore Services</a>
+            <button class="btn btn-secondary" type="button" id="open-dulhan-gallery-btn">Dulhan Photo</button>
           </div>
           <div class="hero-highlights">
             <div>
@@ -92,6 +93,23 @@
             <i class="fa-solid fa-sparkles"></i>
             <span>Signature Finish</span>
           </div>
+        </div>
+      </section>
+
+      <section id="dulhan-gallery-panel" class="section dulhan-gallery-section" hidden>
+        <div class="section-heading reveal">
+          <p class="eyebrow">Dulhan Gallery</p>
+          <h2>Upload bridal photos for your gallery</h2>
+          <p>Select one or more images and keep them saved in your browser for quick access.</p>
+        </div>
+        <div class="upload-card reveal">
+          <div class="upload-controls">
+            <label class="upload-label" for="dulhan-upload-input">Choose photos</label>
+            <input id="dulhan-upload-input" type="file" accept="image/*" capture="environment" multiple />
+            <button class="btn btn-primary" type="button" id="upload-gallery-btn">Upload Photos</button>
+          </div>
+          <p class="upload-status" id="upload-status">No photos uploaded yet.</p>
+          <div id="dulhan-preview-grid" class="gallery-upload-grid"></div>
         </div>
       </section>
 
