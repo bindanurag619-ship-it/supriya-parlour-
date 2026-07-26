@@ -10,8 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const revealItems = document.querySelectorAll('.reveal');
   const openDulhanGalleryBtn = document.getElementById('open-dulhan-gallery-btn');
   const dulhanGalleryPanel = document.getElementById('dulhan-gallery-panel');
-  const uploadInput = document.getElementById('dulhan-upload-input');
-  const uploadButton = document.getElementById('upload-gallery-btn');
   const previewGrid = document.getElementById('dulhan-preview-grid');
   const uploadStatus = document.getElementById('upload-status');
   const storageKey = 'supriya-dulhan-gallery';
@@ -28,6 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
   } catch (error) {
     console.warn('Gallery storage is unavailable on this device:', error);
     galleryImages = [];
+  }
+
+  // If no uploaded images exist, populate with 27 default Dulhan photos
+  if (!galleryImages || galleryImages.length === 0) {
+    galleryImages = Array.from({ length: 27 }, (_, i) => `image/dulhan${i + 1}.jpg`);
   }
 
   document.body.dataset.theme = 'dark';
@@ -55,42 +58,80 @@ document.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('mouseleave', () => card.classList.remove('hovered'));
   });
 
-  window.addEventListener('scroll', () => {
-    const winScroll = window.scrollY;
-    const height = document.documentElement.scrollHeight - window.innerHeight;
-    const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
-    progress.style.transform = `scaleX(${scrolled / 100})`;
-    backToTop.classList.toggle('visible', winScroll > 600);
-  });
+  // Throttle scroll updates via requestAnimationFrame and guard elements
+  (function() {
+    let lastKnownScrollY = window.scrollY;
+    let ticking = false;
+    const onScroll = () => {
+      lastKnownScrollY = window.scrollY;
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          const winScroll = lastKnownScrollY;
+          const height = document.documentElement.scrollHeight - window.innerHeight;
+          const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+          if (progress) progress.style.transform = `scaleX(${scrolled / 100})`;
+          if (backToTop) backToTop.classList.toggle('visible', winScroll > 600);
+          ticking = false;
+        });
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    if (backToTop) {
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  })();
 
-  backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  navToggle.addEventListener('click', () => {
-    siteNav.classList.toggle('open');
-    const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-    navToggle.setAttribute('aria-expanded', String(!expanded));
-  });
+  if (navToggle && siteNav) {
+    navToggle.addEventListener('click', () => {
+      siteNav.classList.toggle('open');
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+    });
+  }
 
   document.querySelectorAll('.site-nav a').forEach((link) => {
     link.addEventListener('click', () => {
-      siteNav.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
+      if (siteNav) siteNav.classList.remove('open');
+      if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
     });
   });
 
-  const pointerMove = (event) => {
-    cursor.style.left = `${event.clientX}px`;
-    cursor.style.top = `${event.clientY}px`;
-  };
-
+  // Throttle pointer updates with requestAnimationFrame and reduce listeners
   if (!isTouchDevice && cursor) {
-    window.addEventListener('mousemove', pointerMove);
-    document.querySelectorAll('a, button, input, select, textarea, .service-card, .product-card, .gallery-card, .testimonial-card').forEach((el) => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-    });
+    let mouseX = 0;
+    let mouseY = 0;
+    let pointerTicking = false;
+
+    const onPointerMove = (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+      if (!pointerTicking) {
+        pointerTicking = true;
+        requestAnimationFrame(() => {
+          if (cursor) {
+            cursor.style.left = `${mouseX}px`;
+            cursor.style.top = `${mouseY}px`;
+          }
+          pointerTicking = false;
+        });
+      }
+    };
+
+    window.addEventListener('pointermove', onPointerMove, { passive: true });
+
+    // Use delegation for hover state to reduce many listeners
+    const hoverSelector = 'a, button, input, select, textarea, .service-card, .product-card, .gallery-card, .testimonial-card';
+    document.addEventListener('pointerover', (e) => {
+      const target = e.target;
+      if (target && target.closest && target.closest(hoverSelector)) cursor.classList.add('hovered');
+    }, true);
+    document.addEventListener('pointerout', (e) => {
+      const target = e.target;
+      if (target && target.closest && target.closest(hoverSelector)) cursor.classList.remove('hovered');
+    }, true);
   }
 
   const updateUploadStatus = (message) => {
@@ -105,7 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
     previewGrid.innerHTML = '';
 
     if (!galleryImages.length) {
-      previewGrid.innerHTML = '<p class="empty-state">No photos uploaded yet. Select images to start your bridal gallery.</p>';
+      previewGrid.innerHTML = '<p class="empty-state">No bridal photos have been added yet.</p>';
+      updateUploadStatus('No bridal photos have been added yet.');
       return;
     }
 
@@ -115,45 +157,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('article');
       card.className = 'upload-item';
       card.innerHTML = `
-        <img src="${imageData}" alt="Uploaded bridal photo ${index + 1}" loading="lazy">
-        <button class="remove-photo-btn" type="button" data-index="${index}" aria-label="Remove photo">×</button>
+        <img class="dulhan-thumb" data-index="${index}" src="${imageData}" alt="Bridal photo ${index + 1}" loading="lazy">
       `;
       fragment.appendChild(card);
     });
 
     previewGrid.appendChild(fragment);
-  };
-
-  const saveGalleryImages = () => {
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(galleryImages));
-    } catch (error) {
-      console.warn('Unable to save gallery images:', error);
-      updateUploadStatus('Photos were added for this session, but this device could not save them permanently.');
-    }
-    renderUploadedImages();
-  };
-
-  const handleImageUpload = async () => {
-    if (!uploadInput?.files?.length) {
-      updateUploadStatus('Please choose at least one photo first.');
-      return;
-    }
-
-    const files = Array.from(uploadInput.files);
-    const imageResults = await Promise.all(
-      files.map((file) => new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      }))
-    );
-
-    galleryImages = [...galleryImages, ...imageResults];
-    saveGalleryImages();
-    uploadInput.value = '';
-    updateUploadStatus(`${imageResults.length} photo${imageResults.length > 1 ? 's' : ''} added to your gallery.`);
+    updateUploadStatus('These bridal photos are displayed for visitors to view.');
   };
 
   openDulhanGalleryBtn?.addEventListener('click', () => {
@@ -165,21 +175,59 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  uploadButton?.addEventListener('click', handleImageUpload);
+  renderUploadedImages();
 
-  previewGrid?.addEventListener('click', (event) => {
-    const removeButton = event.target.closest('.remove-photo-btn');
-    if (!removeButton) return;
+  // Lightbox behavior for full-screen viewing
+  const lightbox = document.getElementById('dulhan-lightbox');
+  const lightboxImg = document.getElementById('dulhan-lightbox-img');
+  const lightboxClose = document.getElementById('dulhan-close');
+  const lightboxPrev = document.getElementById('dulhan-prev');
+  const lightboxNext = document.getElementById('dulhan-next');
+  let currentLightboxIndex = 0;
 
-    const index = Number(removeButton.dataset.index);
-    if (Number.isNaN(index)) return;
+  const openLightbox = (index) => {
+    if (!galleryImages || !galleryImages.length) return;
+    currentLightboxIndex = (index + galleryImages.length) % galleryImages.length;
+    lightboxImg.src = galleryImages[currentLightboxIndex];
+    lightbox.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+  };
 
-    galleryImages.splice(index, 1);
-    saveGalleryImages();
-    updateUploadStatus('Photo removed.');
+  const closeLightbox = () => {
+    lightbox.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
+  };
+
+  const showPrev = () => openLightbox(currentLightboxIndex - 1);
+  const showNext = () => openLightbox(currentLightboxIndex + 1);
+
+  // Delegate clicks from the preview grid to thumbs
+  previewGrid?.addEventListener('click', (e) => {
+    const img = e.target.closest('img.dulhan-thumb');
+    if (img) {
+      const idx = Number(img.dataset.index);
+      openLightbox(idx);
+    }
   });
 
-  renderUploadedImages();
+  lightboxClose?.addEventListener('click', closeLightbox);
+  lightboxPrev?.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+  lightboxNext?.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+
+  // Close when clicking outside the image
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (lightbox && !lightbox.hasAttribute('hidden')) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showNext();
+    }
+  });
 
   form?.addEventListener('submit', (event) => {
     event.preventDefault();
