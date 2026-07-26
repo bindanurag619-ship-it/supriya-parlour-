@@ -35,6 +35,7 @@ body[data-theme="dark"] {
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -43,8 +44,11 @@ body {
   background:
     radial-gradient(circle at top left, rgba(244, 189, 207, 0.28), transparent 28%),
     linear-gradient(135deg, var(--bg) 0%, var(--bg-strong) 100%);
-  min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overscroll-behavior-y: none;
 }
 
 body::before {
@@ -70,10 +74,12 @@ a {
 }
 
 button,
+a,
 input,
 select,
 textarea {
   font: inherit;
+  touch-action: manipulation;
 }
 
 section,
@@ -366,6 +372,83 @@ h2 {
   gap: 1rem;
 }
 
+.dulhan-gallery-section {
+  padding-top: 1rem;
+}
+
+.upload-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+}
+
+.upload-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.upload-label {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+#dulhan-upload-input {
+  flex: 1;
+  min-width: 220px;
+  padding: 0.75rem 1rem;
+}
+
+.upload-status {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.gallery-upload-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.upload-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface-strong);
+  box-shadow: var(--shadow);
+}
+
+.upload-item img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.remove-photo-btn {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  border: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgba(19, 13, 19, 0.72);
+  color: white;
+  cursor: pointer;
+}
+
+.empty-state {
+  color: var(--text-muted);
+  padding: 1rem 0;
+}
+
 .hero-highlights > div {
   flex: 1;
   min-width: 120px;
@@ -384,7 +467,7 @@ h2 {
 
 .hero-visual {
   position: relative;
-  min-height: 500px;
+  min-height: min(70vh, 500px);
   display: grid;
   place-items: center;
 }
@@ -746,6 +829,44 @@ textarea { resize: vertical; }
   transform: translateY(0);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .cursor {
+    display: block;
+  }
+
+  .btn:hover,
+  .nav-cta:hover,
+  .back-to-top:hover,
+  .floating-whatsapp:hover,
+  .whatsapp-btn:hover,
+  .social-links a:hover,
+  .service-card:hover,
+  .product-card:hover,
+  .gallery-card:hover,
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .cursor {
+    display: none;
+  }
+
+  .btn,
+  .nav-cta,
+  .service-card,
+  .product-card,
+  .gallery-card,
+  .testimonial-card,
+  .social-links a,
+  .floating-whatsapp,
+  .back-to-top {
+    transition: none;
+  }
+}
+
 @media (max-width: 980px) {
   .hero,
   .booking-card,
@@ -782,7 +903,7 @@ textarea { resize: vertical; }
     transform: translateY(-8px);
     transition: opacity 0.25s ease, transform 0.25s ease;
   }
-  .site-nav.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .site-nav.open { opacity: 1; pointer-events: auto; transform: translateY(0); max-height: 70vh; overflow-y: auto; }
   .theme-toggle { margin-left: auto; margin-right: 0.6rem; }
   .hero { min-height: auto; }
   .hero-highlights { flex-direction: column; }
